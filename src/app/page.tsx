@@ -11,7 +11,7 @@ export default function Home() {
       name: "Timer 1",
       elapsed: 0,
       running: false,
-      nextNotifyAt: 50,
+      nextNotifyAt: 3600,
     },
   ]);
 
@@ -35,7 +35,7 @@ export default function Home() {
             new Notification(`1 hour passed: ${t.name} is still running!`, {
               body: "Still good? Need a break?",
             });
-            nextNotifyAt = t.nextNotifyAt + 50;
+            nextNotifyAt = t.nextNotifyAt + 3600;
           }
 
           return { ...t, elapsed: newElapsed, nextNotifyAt };
@@ -70,7 +70,7 @@ export default function Home() {
   const resetTimer = (id: number) => {
     setTimers((prev) =>
       prev.map((t) =>
-        t.id === id ? { ...t, elapsed: 0, nextNotifyAt: 50 } : t
+        t.id === id ? { ...t, elapsed: 0, nextNotifyAt: 3600 } : t
       )
     );
   };
@@ -94,7 +94,7 @@ export default function Home() {
         name: `Timer ${prev.length + 1}`,
         elapsed: 0,
         running: false,
-        nextNotifyAt: 50,
+        nextNotifyAt: 3600,
       },
     ]);
   };
