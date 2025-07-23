@@ -1,7 +1,9 @@
+// page.tsx
 'use client';
 
 import { useEffect, useState } from "react";
 import { TimerCard, Timer } from "@/components/TimerCard";
+import { TimerPieChart } from "@/components/TimerPieChart";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
@@ -15,7 +17,7 @@ export default function Home() {
     },
   ]);
 
-  // GLOBAL TICKER: every 1s, increment elapsed for running timers + fire notifications
+  // GLOBAL TICKER
   useEffect(() => {
     const interval = setInterval(() => {
       const canNotify =
@@ -30,7 +32,6 @@ export default function Home() {
           const newElapsed = t.elapsed + 1;
           let nextNotifyAt = t.nextNotifyAt;
 
-          // Time to notify?
           if (canNotify && newElapsed >= t.nextNotifyAt) {
             new Notification(`1 hour passed: ${t.name} is still running!`, {
               body: "Still good? Need a break?",
@@ -46,7 +47,7 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  // Ask for notification permission once
+  // Request permission once
   useEffect(() => {
     if (
       typeof window !== "undefined" &&
@@ -99,6 +100,13 @@ export default function Home() {
     ]);
   };
 
+  // === Chart data ===
+  const chartData = timers
+    .filter((t) => t.elapsed > 0)
+    .map((t) => ({ name: t.name, value: t.elapsed }));
+
+  console.log("chartData", chartData); // <=== HERE
+
   return (
     <main className="min-h-screen p-8 flex flex-col items-center gap-8 bg-black text-gray-100">
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -113,6 +121,8 @@ export default function Home() {
           />
         ))}
       </section>
+
+      {chartData.length >= 2 && <TimerPieChart data={chartData} />}
 
       <Button
         onClick={addTimer}

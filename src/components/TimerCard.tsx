@@ -21,6 +21,7 @@ interface TimerCardProps {
   onDelete: (id: number) => void;
 }
 
+
 // Decide the color based on elapsed time thresholds
 function colorClass(seconds: number) {
   if (seconds < 2 * 3600) return "border-green-400";
