@@ -8,6 +8,9 @@ Add timers, rename them by project, track active sessions, and visualize your wo
 I built this tool because I was constantly juggling multiple projects and struggling to fill out my timesheet at work.
 This widget helps me keep accurate track of where my time goes and makes reporting way easier.
 
+## 📸 Demo
+
+![Screenshot](public/demo.png)  
 
 ## 🚀 Features
 
@@ -15,7 +18,8 @@ This widget helps me keep accurate track of where my time goes and makes reporti
 - Start, stop, reset, and delete timers  
 - Rename timers to match project codes or names  
 - Live pie chart showing time distribution across projects  
-- Clean, responsive UI  
+- Clean, responsive UI
+- Dynamic color-coded borders by elapsed time: <2h green, <4h yellow, <6h orange, >=6h red.
 
 ## Installation
 
